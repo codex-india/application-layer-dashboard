@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Layer Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>.video-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#101a2c}.video-frame iframe{position:absolute;width:100%;height:100%;border:0}.input-row button{border:1px solid #246bfe;border-radius:8px;background:#fff;color:#246bfe;font:inherit;font-weight:700;padding:10px 12px;cursor:pointer;white-space:nowrap}</style>
+</head>
+<body>
+  <main class="app-shell">
+    <header>
+      <div>
+        <p class="eyebrow">Computer Networks · Application Layer</p>
+        <h1>Activity & Protocol Visualizer</h1>
+      </div>
+      <div id="sync-status" class="sync-status"><span></span> Ready to simulate</div>
+    </header>
+
+    <section class="dashboard" aria-label="Dashboard">
+      <article class="panel activity-panel">
+        <div class="panel-heading">
+          <div><p class="section-label">01 · Activity</p><h2>Choose an action</h2></div>
+          <span class="tag">Simulated</span>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Activity type">
+          <button class="tab active" data-mode="browse" role="tab">🌐 Browse</button>
+          <button class="tab" data-mode="mail" role="tab">✉ Mail</button>
+          <button class="tab" data-mode="stream" role="tab">▶ Stream</button>
+        </div>
+
+        <form id="browse-form" class="activity-form">
+          <label for="url">Website address</label>
+          <div class="input-row"><input id="url" type="text" value="https://example.com/course" aria-label="Website address" /><button class="primary" type="submit">Visit page</button></div>
+          <p class="hint">This safely simulates a browser request; it does not open the website.</p>
+        </form>
+
+        <form id="mail-form" class="activity-form hidden">
+          <label for="recipient">To</label><input id="recipient" type="email" value="student@example.edu" />
+          <label for="subject">Subject</label><input id="subject" type="text" value="Assignment update" />
+          <label for="body">Message</label><textarea id="body" rows="3">Hello, the protocol dashboard is ready for review.</textarea>
+          <button class="primary" type="submit">Send email</button>
+        </form>
+
+        <section id="stream-form" class="activity-form hidden">
+          <label for="quality">Video quality</label>
+          <select id="quality"><option value="720p">720p · HD</option><option value="480p">480p · SD</option><option value="1080p">1080p · Full HD</option></select>
+          <label for="video-url">YouTube video</label>
+          <div class="input-row"><input id="video-url" type="url" value="https://www.youtube.com/watch?v=aqz-KE-bpKQ" aria-label="YouTube video link" /><button id="load-video" type="button">Load video</button></div>
+          <p class="hint">A real YouTube video is included. You can paste a different public YouTube link at any time.</p>
+          <div class="video-frame"><iframe id="youtube-player" src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ" title="Streaming video example" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+          <div class="stream-card"><div class="video-icon">▶</div><div><strong>Lecture 05: DNS and HTTP</strong><p id="stream-state">Paused · ready to play</p></div></div>
+          <button id="stream-button" class="primary" type="button">Start stream</button>
+        </section>
+
+        <div class="activity-status" aria-live="polite"><span id="activity-dot"></span><p id="activity-status">Select an action to see the matching protocol exchange.</p></div>
+        <section class="log-wrap"><div class="log-heading"><h3>Activity log</h3><button id="clear-log" class="text-button" type="button">Clear</button></div><ol id="activity-log"><li>Dashboard initialized</li></ol></section>
+      </article>
+
+      <article class="panel protocol-panel">
+        <div class="panel-heading">
+          <div><p class="section-label">02 · Protocol visualization</p><h2 id="protocol-title">Waiting for an activity</h2></div>
+          <span id="step-counter" class="tag">0 / 0</span>
+        </div>
+        <div class="player-controls">
+          <button id="previous" type="button" title="Previous step">‹</button><button id="play-pause" type="button" class="control-main">Play</button><button id="next" type="button" title="Next step">›</button><button id="replay" type="button" title="Replay">↻</button>
+          <label class="speed-label">Speed <select id="speed"><option value="1200">Normal</option><option value="600">Fast</option><option value="2000">Slow</option></select></label>
+        </div>
+        <p id="protocol-intro" class="protocol-intro">Run Browse, Mail, or Stream on the left. The messages will appear here in order.</p>
+        <div id="timeline" class="timeline" aria-live="polite"></div>
+        <aside id="detail-card" class="detail-card"><p class="detail-empty">Select a revealed message to inspect its important fields.</p></aside>
+      </article>
+    </section>
+    <footer>Educational simulation · Messages are representative of real application-layer protocols.</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
