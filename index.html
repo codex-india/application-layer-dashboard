@@ -1,36 +1,98 @@
-<article class="panel right-panel">
-  <div class="panel-header">
-    <div>
-      <p>02 · Protocol visualization</p>
-      <h2>Network Traffic</h2>
-    </div>
-    
-    <!-- NEW: Layer Toggle Switch -->
-    <div class="layer-toggle" id="layer-toggle-container" style="display: none;">
-      <button id="btn-app-layer" class="active-layer">App Layer</button>
-      <button id="btn-transport-layer">Transport Layer</button>
-    </div>
-    <span id="message-count">0 / 0</span>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application & Transport Layer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <header>
+            <div>
+                <p>Computer Networks · Application & Transport Layer</p>
+                <h1>Activity & Protocol Visualizer</h1>
+            </div>
+            <div><span id="status-text">🟢 Ready to simulate</span></div>
+        </header>
 
-  <div id="visualization-container" class="message-container">
-    <p class="placeholder">Run Browse, Mail, or Stream on the left. The messages will appear here in order.</p>
-  </div>
-  
-  <div aria-live="polite" id="status-live-region"></div>
-  
-  <!-- NEW: Transport Layer Stats Box (Hidden by default) -->
-  <aside id="transport-stats" class="transport-stats" style="display: none;">
-    <h3>Transport Layer Summary</h3>
-    <div class="stats-grid">
-      <div><strong>UDP Datagrams:</strong> <span id="stat-udp">0</span></div>
-      <div><strong>TCP Segments:</strong> <span id="stat-tcp">0</span></div>
-      <div><strong>Total Payload:</strong> <span id="stat-bytes">0</span> Bytes</div>
-    </div>
-    <p id="transport-insight" class="transport-insight"></p>
-  </aside>
+        <section aria-label="Dashboard">
+            
+            <!-- LEFT PANEL: ACTIVITY -->
+            <article class="panel left-panel">
+                <div class="panel-header">
+                    <div>
+                        <p>01 · Activity</p>
+                        <h2>Choose an action</h2>
+                    </div>
+                </div>
+                
+                <div aria-label="Activity type" role="tablist">
+                    <button class="active">Browse Web</button>
+                    <button>Stream Video</button>
+                    <button>Send Mail</button>
+                </div>
 
-  <aside class="inspector-hint">
-    <p>Select a revealed message to inspect its important fields.</p>
-  </aside>
-</article>
+                <section class="activity-settings">
+                    <button id="btn-simulate" class="simulate-btn">Run Simulation</button>
+                </section>
+
+                <section class="log-section">
+                    <div class="panel-header">
+                        <h3>Activity log</h3>
+                    </div>
+                    <ol id="activity-log">
+                        <li>Dashboard initialized</li>
+                    </ol>
+                </section>
+            </article>
+
+            <!-- RIGHT PANEL: VISUALIZATION -->
+            <article class="panel right-panel">
+                <div class="panel-header">
+                    <div>
+                        <p>02 · Protocol visualization</p>
+                        <h2>Network Traffic</h2>
+                    </div>
+                    
+                    <!-- NEW: Layer Toggle Switch (Hidden until simulation runs) -->
+                    <div class="layer-toggle" id="layer-toggle-container" style="display: none;">
+                        <button id="btn-app-layer" class="active-layer">App Layer</button>
+                        <button id="btn-transport-layer">Transport Layer</button>
+                    </div>
+                    <span id="message-count">0 / 0</span>
+                </div>
+
+                <!-- Messages appear here -->
+                <div id="visualization-container" class="message-container">
+                    <p class="placeholder">Run Browse, Mail, or Stream on the left. The messages will appear here in order.</p>
+                </div>
+                
+                <div aria-live="polite" id="status-live-region"></div>
+                
+                <!-- NEW: Transport Layer Stats Box (Hidden by default) -->
+                <aside id="transport-stats" class="transport-stats" style="display: none;">
+                    <h3>Transport Layer Summary</h3>
+                    <div class="stats-grid">
+                        <div><strong>UDP Datagrams:</strong> <span id="stat-udp">0</span></div>
+                        <div><strong>TCP Segments:</strong> <span id="stat-tcp">0</span></div>
+                        <div><strong>Total Payload:</strong> <span id="stat-bytes">0</span> Bytes</div>
+                    </div>
+                    <p id="transport-insight" class="transport-insight"></p>
+                </aside>
+
+                <aside class="inspector-hint">
+                    <p>Select a revealed message to inspect its important fields.</p>
+                </aside>
+            </article>
+            
+        </section>
+        
+        <footer>
+            Educational simulation · Messages are representative of real application and transport layer protocols.
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
