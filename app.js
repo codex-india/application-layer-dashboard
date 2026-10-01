@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const insightEl = document.getElementById('transport-insight');
         if (activeAction === 'browse web') {
-            insightEl.innerHTML = "<strong>Extra Credit Insight:</strong> Notice the <strong>Congestion Window (cwnd)</strong> doubling from 10 MSS to 20 MSS after the first successful ACK. This is TCP <strong>Slow Start</strong> in action!";
+            insightEl.innerHTML = "<strong>Congestion Control Insight:</strong> Notice the <strong>Congestion Window (cwnd)</strong> doubling from 10 MSS to 20 MSS after the first successful ACK. This is TCP <strong>Slow Start</strong> in action!";
         } else if (activeAction === 'stream video') {
             insightEl.innerHTML = "<strong>Transport Insight:</strong> Streaming uses UDP/QUIC. There is no traditional TCP handshake or strict ACKing, preventing head-of-line blocking and reducing latency.";
         } else {
