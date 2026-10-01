@@ -34,23 +34,19 @@
                 </div>
 
                 <section class="activity-settings">
-                    <!-- NEW: Video settings container (hidden by default unless "Stream Video" is active) -->
                     <div id="video-settings-container" style="display: none; margin-bottom: 15px;">
-                        <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 10px; font-weight: 600;">
-                            Live Streaming Example:
-                        </p>
+                        <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 10px; font-weight: 600;">Live Streaming Example:</p>
                         <select id="video-quality" style="margin-bottom: 10px; width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
                             <option value="720p">720p · HD</option>
                             <option value="480p">480p · SD</option>
                             <option value="1080p">1080p · Full HD</option>
                         </select>
-                        <div style="border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                            <!-- Example YouTube Video -->
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/3QhU9jd03a0" title="Lecture 05: DNS and HTTP" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div style="border-radius: 8px; overflow: hidden; background: #000;">
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/3QhU9jd03a0" title="Lecture 05" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
 
-                    <button id="btn-simulate" class="simulate-btn">Run Simulation</button>
+                    <button id="btn-simulate" class="simulate-btn">Start Simulation</button>
                 </section>
 
                 <section class="log-section">
@@ -71,7 +67,6 @@
                         <h2>Network Traffic</h2>
                     </div>
                     
-                    <!-- Layer Toggle Switch -->
                     <div class="layer-toggle" id="layer-toggle-container" style="display: none;">
                         <button id="btn-app-layer" class="active-layer">App Layer</button>
                         <button id="btn-transport-layer">Transport Layer</button>
@@ -79,9 +74,17 @@
                     <span id="message-count">0 / 0</span>
                 </div>
 
+                <!-- NEW: Playback Controls (Hidden until simulation starts) -->
+                <div id="playback-controls" class="playback-controls" style="display: none;">
+                    <button id="btn-prev" disabled>⏮ Step Back</button>
+                    <button id="btn-playpause">⏸ Pause</button>
+                    <button id="btn-next">Step Fwd ⏭</button>
+                    <button id="btn-replay">🔄 Replay</button>
+                </div>
+
                 <!-- Messages appear here -->
                 <div id="visualization-container" class="message-container">
-                    <p class="placeholder">Select an action on the left and click "Run Simulation" to view the protocol exchange.</p>
+                    <p class="placeholder">Select an action on the left and click "Start Simulation".</p>
                 </div>
                 
                 <div aria-live="polite" id="status-live-region"></div>
@@ -101,7 +104,7 @@
         </section>
         
         <footer>
-            Educational simulation · Messages are representative of real application and transport layer protocols.
+            Educational simulation · Accurate TCP/UDP state machine, Seq/Ack tracking, and Congestion Control included.
         </footer>
     </main>
 
